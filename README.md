@@ -1,0 +1,1 @@
+# mostly sh scripts

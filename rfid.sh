@@ -27,8 +27,11 @@
 #
 # /etc/crontab entry: @reboot root:wheel /home/$USER/.local/bin/rfid.sh &
 
+dev_num=`xinput --list | grep "USB Standard" | awk '{ print $5 }' | cut -d= -f2`
+xinput --disable $dev_num
+
 # [Device]
-device='/dev/input/event6'
+device='/dev/input/event7'
 # [Device Key Mappings]
 #event_newline='*code 28 (KEY_ENTER), value 1*'
 event_num0='*code 11 (KEY_0), value 1*'

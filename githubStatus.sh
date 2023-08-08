@@ -14,7 +14,7 @@ printNotification() {
     ssh -T git@github.com
 
     if [ $? -eq 255 ]; then
-        herbe "GitHub Not Connect" "Right click icon to open terminal and enter github key with ssh-add"
+        herbe "GitHub Disconnected" " " "Right click icon to open terminal and enter github key using ssh-add"
     elif [ $? -eq 1 ]; then
         herbe "GitHub Connected"
     fi

@@ -3,7 +3,7 @@
 isEnabled=$(sysctl hw.psm.elantech.touchpad_off | awk -F" " '{ printf $NF }')
 
 if [ $isEnabled -eq 0 ]; then
-	echo " on"
+	echo "<fc=#fffdd0>"
 else
-	echo " off"
+	echo "<fc=#666666>"
 fi

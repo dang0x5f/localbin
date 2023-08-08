@@ -5,6 +5,7 @@ VOL_UNIT=2
 
 currentVol=$(mixer vol | cut -d: -f2)
 currentMicVol=$(mixer mic | cut -d: -f2)
+charCount=$(echo ${currentMicVol} | wc -c)
 
 MuteVol()
 {
@@ -99,12 +100,16 @@ MuteMic()
 }
 
 PrintMicVol() {
-    herbe "Mic Volume: ${currentMicVol}"
+    if [ ${charCount} -gt 5 ]; then
+        herbe "Mic Volume: N/A" " " "Check microphone devices"
+    else
+        herbe "Mic Volume: ${currentMicVol}"
+    fi
 }
 
 PrintMicCol()
 {
-    if [ `echo ${currentMicVol} | wc -c` -lt 5 ]; then
+    if [ ${charCount} -lt 5 ]; then
        # echo "${currentMicVol}"
        echo "<fc=#fffdd0>"
     else

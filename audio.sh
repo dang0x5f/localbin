@@ -39,9 +39,36 @@ DecrVol()
    exit 0
 }
 
-PrintVol()
+PrintVol() {
+    herbe "Output Device Volume: ${currentVol}"
+}
+
+PrintCol()
 {
-   echo " ${currentVol}"
+    if [ ${currentVol} -gt 90 ]; then
+        echo "<fc=#fffdd0>"
+    elif [ ${currentVol} -gt 80 ]; then
+        echo "<fc=#eeeeee>"
+    elif [ ${currentVol} -gt 70 ]; then
+        echo "<fc=#dddddd>"
+    elif [ ${currentVol} -gt 60 ]; then
+        echo "<fc=#cccccc>"
+    elif [ ${currentVol} -gt 50 ]; then
+        echo "<fc=#bbbbbb>"
+    elif [ ${currentVol} -gt 40 ]; then
+        echo "<fc=#aaaaaa>"
+    elif [ ${currentVol} -gt 30 ]; then
+        echo "<fc=#999999>"
+    elif [ ${currentVol} -gt 20 ]; then
+        echo "<fc=#888888>"
+    elif [ ${currentVol} -gt 10 ]; then
+        echo "<fc=#777777>"
+    else
+        echo "<fc=#666666>"
+    fi
+
+    # print num
+    # echo " ${currentVol}"
 }
 
 PrintList()
@@ -71,12 +98,18 @@ MuteMic()
    fi
 }
 
-PrintMicVol()
+PrintMicVol() {
+    herbe "Mic Volume: ${currentMicVol}"
+}
+
+PrintMicCol()
 {
     if [ `echo ${currentMicVol} | wc -c` -lt 5 ]; then
-       echo "${currentMicVol}"
+       # echo "${currentMicVol}"
+       echo "<fc=#fffdd0>"
     else
-        echo "N/A"
+        # echo "N/A"
+        echo "<fc=#666666>"
     fi
 }
 
@@ -94,15 +127,17 @@ PrintMicList()
     sysctl hw.snd.default_unit=${choice}
 }
 
-while getopts "zudpPZUDmM" o; do
+while getopts "zudpPZUDmMtT" o; do
    case $o in
 	z) MuteVol ;;
 	u) IncrVol ;;
 	d) DecrVol ;;
-	p) PrintVol ;;
+	p) PrintCol ;;
 	P) PrintList ;;
 	Z) MuteMic ;;
-	m) PrintMicVol ;;
+	m) PrintMicCol ;;
 	M) PrintMicList ;;
+    t) PrintMicVol ;;
+    T) PrintVol ;;
    esac
 done

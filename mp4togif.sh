@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# google ffmpeg mp4 -> gif
-# example
+# ffmpeg mp4 -> gif
+# 
 # ffmpeg -i noise.mp4 -r 15 -vf "scale=2*1408:-1, crop=1408/2:792/2" noise.gif
 # scale, or factor, mult by the with can be changed
 

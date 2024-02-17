@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VARIABLES
+# paths
 OLDPWD="${PWD}"
 CDRIPDIR="${HOME}/.cdrip"
 

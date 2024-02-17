@@ -4,7 +4,8 @@ MUTE=0
 VOL_UNIT=2
 
 currentVol=$(mixer vol | cut -d: -f2)
-currentMicVol=$(mixer mic | cut -d: -f2)
+#currentMicVol=$(mixer mic | cut -d: -f2)
+currentMicVol=$(mixer rec | cut -d: -f2)
 charCount=$(echo ${currentMicVol} | wc -c)
 
 MuteVol()
@@ -24,7 +25,8 @@ IncrVol()
 {
    if [ $currentVol -le 98 ]; then
 	currentVol=$(($currentVol + $VOL_UNIT))
-	mixer vol $currentVol && herbe "volume: ${currentVol}"
+	#mixer vol $currentVol && herbe "volume: ${currentVol}"
+	mixer vol $currentVol 
    fi
 
    exit 0
@@ -34,7 +36,8 @@ DecrVol()
 {
    if [ $currentVol -ge 2 ]; then
 	currentVol=$(($currentVol - $VOL_UNIT))
-	mixer vol $currentVol && herbe "volume: ${currentVol}"
+	#mixer vol $currentVol && herbe "volume: ${currentVol}"
+	mixer vol $currentVol 
    fi
 
    exit 0
@@ -109,11 +112,25 @@ PrintMicVol() {
 
 PrintMicCol()
 {
-    if [ ${charCount} -lt 5 ]; then
-       # echo "${currentMicVol}"
-       echo "<fc=#fffdd0>"
+    if [ ${currentMicVol} -gt 90 ]; then
+        echo "<fc=#fffdd0>"
+    elif [ ${currentMicVol} -gt 80 ]; then
+        echo "<fc=#eeeeee>"
+    elif [ ${currentMicVol} -gt 70 ]; then
+        echo "<fc=#dddddd>"
+    elif [ ${currentMicVol} -gt 60 ]; then
+        echo "<fc=#cccccc>"
+    elif [ ${currentMicVol} -gt 50 ]; then
+        echo "<fc=#bbbbbb>"
+    elif [ ${currentMicVol} -gt 40 ]; then
+        echo "<fc=#aaaaaa>"
+    elif [ ${currentMicVol} -gt 30 ]; then
+        echo "<fc=#999999>"
+    elif [ ${currentMicVol} -gt 20 ]; then
+        echo "<fc=#888888>"
+    elif [ ${currentMicVol} -gt 10 ]; then
+        echo "<fc=#777777>"
     else
-        # echo "N/A"
         echo "<fc=#666666>"
     fi
 }

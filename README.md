@@ -1,8 +1,8 @@
 # System Scripts
 
 
-## [xmobar](https://codeberg.org/xmobar/xmobar) extension scripts
-- audio.sh
+## [xmobar](https://codeberg.org/xmobar/xmobar) extension shell scripts
+- audio.sh - handles system volume/microphone controls (increase,decrease,mute), device selection, and icon status (color/text output)
 - battery.sh
 - brightness.sh
 - displayip.sh
@@ -17,7 +17,7 @@
 ## ruby
 - sync-scripts.rb
 
-## other
+## other shell scripts
 - bestcompress.sh
 - cdrip.sh
 - dl-mp3.sh

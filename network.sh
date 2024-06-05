@@ -1,21 +1,18 @@
 #!/bin/sh -x
 
-# wired
 lan="$(ifconfig alc0 | grep inet | sed -e "s/\\t//g" | awk '{ printf $2 }')"
 lanStatus="$(ifconfig alc0 | grep status | awk '{ printf $2 }')"
-# wireless
+
 wlan="$(ifconfig wlan0 | grep inet | sed -e "s/\\t//g" | awk '{ printf $2 }')"
 wlanStatus="$(ifconfig wlan0 | grep status | awk '{ printf $2 }')"
 
-if [ "$wlan" == "0.0.0.0" ] || [ "$wlan" == "" ] || [ "$lanStatus" == "active" ]; then
-#    echo " ${lan}"
-    # echo " LAN"
+IP4_ZEROED="0.0.0.0"
+IP4_BLANK=""
+
+if [ "$wlan" == ${IP4_ZEROED} ] || [ "$wlan" == ${IP4_BLANK} ] || [ "$lanStatus" == "active" ]; then
     echo "<fc=#fffdd0>"
-elif [ "$lan" == "0.0.0.0" ] || [ "$lan" == "" ] || [ "$wlanStatus" == "associated" ]; then
-#    echo " ${wlan}"
-    # echo " WLAN"
+elif [ "$lan" == ${IP4_ZEROED} ] || [ "$lan" == ${IP4_BLANK} ] || [ "$wlanStatus" == "associated" ]; then
     echo "<fc=#fffdd0>"
 else
-    # echo " no connection"
     echo "<fc=#666666>"
 fi

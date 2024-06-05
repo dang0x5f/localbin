@@ -3,7 +3,7 @@
 isEnabled=$(sysctl hw.psm.elantech.touchpad_off | awk -F" " '{ printf $NF }')
 
 toggle_touchpad(){
-    if [ $isEnabled -eq 0 ]; then
+    if [ ${isEnabled} -eq 0 ]; then
         sysctl hw.psm.elantech.touchpad_off=1
     else
         sysctl hw.psm.elantech.touchpad_off=0

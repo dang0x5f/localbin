@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/sh 
 
 # uses image magick to take a screen shot
 # xwininfo grabs the window id

@@ -26,12 +26,16 @@
 #          - finally, find a way to run in background with root, here uses crontab.
 #
 # /etc/crontab entry: @reboot root:wheel /home/$USER/.local/bin/rfid.sh &
+#
+# tail -14  /var/log/Xorg.0.log | grep id | awk '{ print $NF }' | sed 's/)//'
+# 
+# libinput list-devices | grep "USB Standard" -A 1
 
 dev_num=`xinput --list | grep "USB Standard" | awk '{ print $5 }' | cut -d= -f2`
 xinput --disable $dev_num
 
 # [Device]
-device='/dev/input/event7'
+device='/dev/input/event8'
 # [Device Key Mappings]
 #event_newline='*code 28 (KEY_ENTER), value 1*'
 event_num0='*code 11 (KEY_0), value 1*'
@@ -69,7 +73,7 @@ sudo evtest "$device" | while read line; do
             #0007939453) su -l $USER -c 'env DISPLAY=:0 PATH="$PATH:$HOME/.local/bin" remote-backup.sh -l 2' ;;
             #0007939453) su -l $USER -c 'env DISPLAY=:0 /usr/local/bin/herbe "code scanned"' ;;
             #0007939453) cd $HOME/music/new-downloads/; herbe `pwd` ;;
-            0007939453) cd $HOME/music/new-downloads/; yt-dlp -x --no-playlist --audio-format "mp3" --embed-thumbnail `xclip -o`; herbe "Downloaded" ;;
+            0007939453) cd $HOME/music/; yt-dlp -x --no-playlist --audio-format "mp3" --embed-thumbnail `xclip -o`; herbe "Downloaded" ;;
         esac
         code=""
     fi

@@ -23,13 +23,13 @@ printColor() {
     elif [ ${bat} -gt 40 ]; then
         echo "<fc=#aaaaaa>"
     elif [ ${bat} -gt 30 ]; then
-        echo "<fc=#999999>"
+        echo "<fc=#f1fa8c,#666666> ${bat}% </fc> <fc=#999999>"
     elif [ ${bat} -gt 20 ]; then
-        echo "<fc=#888888>"
+        echo "<fc=#f1fa8c,#666666> ${bat}% </fc> <fc=#888888>"
     elif [ ${bat} -gt 10 ]; then
-        echo "<fc=#777777>"
+        echo "<fc=#e3735e,#666666> ${bat}% </fc> <fc=#777777>"
     else
-        echo "<fc=#666666>"
+        echo "<fc=#e3735e,#666666> ${bat}% </fc> <fc=#666666>"
     fi
 }
 

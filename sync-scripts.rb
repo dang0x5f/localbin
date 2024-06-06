@@ -8,7 +8,7 @@ end
 
 $HOME = "/usr/home/" + Etc.getlogin
 $DIR = $HOME + "/.local/bin/"
-$GIT = $HOME + "/code/refs/ruby/fakedir/"
+$GIT = $HOME + "/code/repo/scripts/"
 
 $SHELL = ".sh"
 $RUBY  = ".rb"
@@ -34,7 +34,7 @@ if __FILE__ == $0
       # write to file
       File.write(to, data)
 
-      puts "#{filename} written #{to}."
+      puts "#{filename} written to #{to}"
     end
 
   end

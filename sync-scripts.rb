@@ -6,7 +6,7 @@ def check_extension(filename,ext)
   return File.extname(filename) == ext
 end
 
-$HOME = "/usr/home/" + Etc.getlogin
+$HOME = "/home/" + Etc.getlogin
 $DIR = $HOME + "/.local/bin/"
 $GIT = $HOME + "/code/repo/scripts/"
 

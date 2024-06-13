@@ -16,14 +16,15 @@ index=0
 delim="~"
 file="/tmp/mocp-ticker.tmp"
 binary="${HOME}/.local/bin/ticker"
+len=25
 
 if [ ! -e ${file} ]; then
     echo "${index}${delim}${songtitle}" > ${file}
-    ${binary} "${songtitle}" "${file}"
+    ${binary} "${songtitle}" "${file}" ${len}
 else
     # echo ${songtitle}
     if [ ${state} == "PLAY" -o ${state} == "PAUSE" ]; then
-        ${binary} "${songtitle}" "${file}"
+        ${binary} "${songtitle}" "${file}" ${len}
     elif [ ${state} == "STOP" ]; then
         # echo " ...Playlist Ended...   "
         echo " ...Nothing Loaded...   "

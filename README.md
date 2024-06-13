@@ -18,7 +18,8 @@
 ## ruby
 - **sync-scripts.rb** - sync $HOME/.local/bin scripts to the scripts git repo
 - **sync-dotfiles.rb** - sync important home dot files to dotfiles git repo 
-- **sync-ansiblefiles.rb** - sync files used in ansible-pull 
+- **sync-miscfiles.rb** - sync non-dot, non-home files to miscfiles git repo 
+- **sync-ansiblefiles.rb** - sync files used in ansible-pull git repo
 
 ## other shell scripts
 - **bestcompress.sh** - best file compression (compress/gzip/bzip2/zip)

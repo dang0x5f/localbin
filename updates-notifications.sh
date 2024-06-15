@@ -2,7 +2,7 @@
 
 index=0
 delim="~"
-file="/tmp/update-notifications.tmp"
+file="/tmp/updates-script.tmp"
 
 pkg upgrade -n | grep "packages to be upgraded:" 1> /dev/null 2> /dev/null
 if [ $? -eq 1 ]; then

@@ -1,10 +1,19 @@
 #!/usr/bin/env ruby
 
-require 'socket'
+# require 'socket'
 require 'etc'
+
+def check_extension(filename,ext)
+  return File.extname(filename) == ext
+end
 
 $HOME = "/home/" + Etc.getlogin + "/"
 $REPO = $HOME + "code/repo/ansible_pull/tasks/files/"
+
+$BIN = $HOME + "/.local/bin/"
+$REPO2 = $HOME + "code/repo/ansible_pull/tasks/bin/"
+$SHELL = ".sh"
+$RUBY  = ".rb"
 
 # $TEST_DIR = "/tmp/test_dir/"
 
@@ -40,4 +49,32 @@ if __FILE__ == $0
 
     end
   end
+
+
+  filenames = Dir.children($BIN)
+
+  # for each filename
+  filenames.each do |filename|
+    
+    from = $BIN + filename
+    to   = $REPO2 + filename
+    
+    if check_extension(from, $SHELL) || check_extension(from, $RUBY)
+      # open file 
+      file = File.open(from)
+      # read file
+      data = file.read
+      # close file
+      file.close
+      
+      # write to file
+      File.write(to, data)
+
+      #puts "#{filename} written to #{to}"
+      puts "From: #{from}"
+      puts "  To: #{to}"
+    end
+
+  end
+
 end

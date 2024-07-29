@@ -9,7 +9,7 @@ mocp --info 1> /dev/null 2> /dev/null
 if [ $? != 0 ]; then
     # echo ". . . . . . . . . . . . "
     # echo " ...Nothing Loaded...   "
-    str="$(cat /tmp/update-notifications.tmp | cut -d~ -f2)"
+    str="$(cat /tmp/updates-script.tmp | cut -d~ -f2)"
     ${binary} "${str}" "${updatefile}" ${len}
     exit 0
 fi
@@ -29,7 +29,7 @@ else
     if [ ${state} == "PLAY" -o ${state} == "PAUSE" ]; then
         ${binary} "${songtitle}" "${mocpfile}" ${len}
     elif [ ${state} == "STOP" ]; then
-        str="$(cat /tmp/update-notifications.tmp | cut -d~ -f2)"
+        str="$(cat /tmp/updates-script.tmp | cut -d~ -f2)"
         ${binary} "${str}" "${updatefile}" ${len}
     fi 
 fi

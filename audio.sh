@@ -79,9 +79,9 @@ PrintList()
 {
     current="`virtual_oss_cmd /dev/dsp.ctl | tail -1 | cut -d' ' -f4`"
     choice="`cat /dev/sndstat | grep pcm | dmenu -p "Output:${current}" -l 5`"
-    # smallest suffix
+    # remove smallest suffix
     choice=${choice%:*}
-    # smallest prefix - check man sh -> substring
+    # remove smallest prefix - check man sh -> substring
     choice=${choice#pcm*}
 
     virtual_oss_cmd /dev/dsp.ctl -O /dev/dsp${choice}

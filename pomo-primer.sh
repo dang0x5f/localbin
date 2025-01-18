@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOCKFILE="/tmp/pomo.lockfile"
+LOCKFILE="/tmp/swixm.lockfile"
 
 printStatus(){
     if [ -f ${LOCKFILE} ]; then

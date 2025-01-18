@@ -22,6 +22,7 @@ paths_hash << { ".Xresources"                     => "xresources"         }
 paths_hash << { ".xmonad/config.hs"               => "xmonad"             }
 paths_hash << { ".xmonad/xmonadctl.hs"            => "xmonadctl"          }
 paths_hash << { ".config/picom.conf"              => "picom"              }
+# paths_hash << { ".config/qutebrowser/config.py"   => "config.py"          }
 paths_hash << { ".shrc"                           => "shrc"               }
 paths_hash << { ".vimrc"                          => "vimrc"              }
 paths_hash << { ".gitconfig"                      => "gitconfig"          }

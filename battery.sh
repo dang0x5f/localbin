@@ -23,29 +23,13 @@ printColor() {
     elif [ ${bat} -gt 40 ]; then
         echo "<fc=#aaaaaa>"
     elif [ ${bat} -gt 30 ]; then
-        if [ $(apm | grep "AC" | awk '{print $NF}') == "on-line" ]; then
-            echo "<fc=#00ff00,#666666> ${bat}% </fc> <fc=#999999>"
-        else
-            echo "<fc=#f1fa8c,#666666> ${bat}% </fc> <fc=#999999>"
-        fi
+        echo "<fc=#f1fa8c,#666666> ${bat}% </fc> <fc=#999999>"
     elif [ ${bat} -gt 20 ]; then
-        if [ $(apm | grep "AC" | awk '{print $NF}') == "on-line" ]; then
-            echo "<fc=#00ff00,#666666> ${bat}% </fc> <fc=#888888>"
-        else
-            echo "<fc=#f1fa8c,#666666> ${bat}% </fc> <fc=#888888>"
-        fi
+        echo "<fc=#f1fa8c,#666666> ${bat}% </fc> <fc=#888888>"
     elif [ ${bat} -gt 10 ]; then
-        if [ $(apm | grep "AC" | awk '{print $NF}') == "on-line" ]; then
-            echo "<fc=#00ff00,#666666> ${bat}% </fc> <fc=#777777>"
-        else
-            echo "<fc=#e3735e,#666666> ${bat}% </fc> <fc=#777777>"
-        fi
+        echo "<fc=#e3735e,#666666> ${bat}% </fc> <fc=#777777>"
     else
-        if [ $(apm | grep "AC" | awk '{print $NF}') == "on-line" ]; then
-            echo "<fc=#00ff00,#666666> ${bat}% </fc> <fc=#666666>"
-        else
-            echo "<fc=#e3735e,#666666> ${bat}% </fc> <fc=#666666>"
-        fi
+        echo "<fc=#e3735e,#666666> ${bat}% </fc> <fc=#666666>"
     fi
 }
 

@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 server_name="cassiopeia"
 
@@ -16,10 +16,10 @@ printStatus() {
 printMessage() {
     if [ ${connection} -gt 0 ]; then
         addr=`traceroute ${server_name} | awk '{ print $3 }'`
-        shares=`mount | grep -i \(nfs | awk '{ print " + " $3 }'`
-        herbe "Local Server" " + ${addr}" " " "NFS mounts" "${shares}"
+        shares=`mount | grep -i \(nfs | awk '{ print $3 }'`
+        herbe "[Local Server]" "${addr}" " " "[NFS Shares]" "${shares}"
     else
-        herbe "Local Server" " + connection closed."
+        herbe "[Local Server]" "connection closed."
     fi
 }
 

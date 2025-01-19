@@ -1,3 +1,70 @@
+volume_msg()
+{
+    muteis=$(mixer -o vol.mute|cut -d= -f2)
+    volume=$(mixer -o vol.volume | cut -d: -f2)
+
+    if [ ${muteis} == "on" ]; then
+        herbe "volume : ${volume}% (muted)"
+        return
+    fi
+
+    herbe "volume : ${volume}%"
+}
+
+volume_prt()
+{
+    muteis=$(mixer -o vol.mute|cut -d= -f2)
+    if [ ${muteis} == "on" ]; then
+        fontcolor_prt 0      
+        return
+    fi
+
+    volume=$(mixer -o vol.volume | cut -d: -f2)
+    case ${volume} in
+        "1.00") fontcolor_prt 100 
+                ;;
+        "0.00") fontcolor_prt 0      
+                ;;
+           *  ) split=$(echo ${volume} | cut -c 3-4) 
+                fontcolor_prt ${split}
+                ;;
+    esac
+}
+
+volume_up()
+{
+    volume=$(mixer -o vol.volume | cut -d: -f2)
+    case ${volume} in
+        "1.00") break
+                ;;
+        "0.00") break
+                ;;
+           *  ) mixer vol.volume=+3%
+                ;;
+    esac
+    volume_msg
+}
+
+volume_down()
+{
+    volume=$(mixer -o vol.volume | cut -d: -f2)
+    case ${volume} in
+        "1.00") break
+                ;;
+        "0.00") break
+                ;;
+           *  ) mixer vol.volume=-3%
+                ;;
+    esac
+    volume_msg
+}
+
+volume_mute()
+{
+    mixer vol.mute=toggle
+    volume_msg
+}
+
 battery_msg()
 {
     pct=$(apm -l)

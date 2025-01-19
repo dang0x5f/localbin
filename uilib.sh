@@ -1,3 +1,27 @@
+github_msg()
+{
+    ssh -T git@github.com
+    case $? in
+          1) herbe "GitHub Connected"
+             ;;
+        255) herbe "GitHub Disconnected"         \
+                   " "                         \
+                   "Right click icon to open"  \
+                   "terminal and enter github" \
+                   "using ssh-add"
+             ;;
+    esac
+}
+
+github_prt()
+{
+    ssh -T git@github.com
+    case $? in
+            1) fontcolor_prt   0 ;;
+          255) fontcolor_prt 100 ;;
+    esac
+}
+
 volume_msg()
 {
     muteis=$(mixer -o vol.mute|cut -d= -f2)

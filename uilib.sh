@@ -18,7 +18,7 @@ touchpad_prt()
     status=$(sysctl hw.psm.elantech.touchpad_off \
            | awk -F" " '{printf $NF}')
 
-    case $? in
+    case ${status} in
         0) fontcolor_prt 100 ;;
         *) fontcolor_prt   0 ;;
     esac

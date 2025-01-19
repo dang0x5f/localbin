@@ -87,8 +87,6 @@ volume_up()
     case ${volume} in
         "1.00") break
                 ;;
-        "0.00") break
-                ;;
            *  ) mixer vol.volume=+3%
                 ;;
     esac
@@ -99,8 +97,6 @@ volume_down()
 {
     volume=$(mixer -o vol.volume | cut -d: -f2)
     case ${volume} in
-        "1.00") break
-                ;;
         "0.00") break
                 ;;
            *  ) mixer vol.volume=-3%

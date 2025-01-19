@@ -1,10 +1,36 @@
+touchpad_toggle()
+{
+    status=$(sysctl hw.psm.elantech.touchpad_off \
+           | awk -F" " '{printf $NF}')
+    
+    case ${status} in
+        0) sysctl hw.psm.elantech.touchpad_off=1
+           herbe "touchpad off"
+           ;;
+        *) sysctl hw.psm.elantech.touchpad_off=0
+           herbe "touchpad on"
+           ;;
+    esac
+}
+
+touchpad_prt()
+{
+    status=$(sysctl hw.psm.elantech.touchpad_off \
+           | awk -F" " '{printf $NF}')
+
+    case $? in
+        0) fontcolor_prt 100 ;;
+        *) fontcolor_prt   0 ;;
+    esac
+}
+
 github_msg()
 {
     ssh -T git@github.com
     case $? in
           1) herbe "GitHub Connected"
              ;;
-        255) herbe "GitHub Disconnected"         \
+        255) herbe "GitHub Disconnected"       \
                    " "                         \
                    "Right click icon to open"  \
                    "terminal and enter github" \
@@ -17,8 +43,8 @@ github_prt()
 {
     ssh -T git@github.com
     case $? in
-            1) fontcolor_prt   0 ;;
-          255) fontcolor_prt 100 ;;
+            1) fontcolor_prt 100 ;;
+          255) fontcolor_prt   0 ;;
     esac
 }
 

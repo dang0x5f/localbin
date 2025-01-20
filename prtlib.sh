@@ -1,8 +1,3 @@
-localserver_msg()
-{
-    # TODO
-}
-
 localserver_prt()
 {
     server="cassiopeia"
@@ -15,11 +10,6 @@ localserver_prt()
     esac
 }
 
-internet_msg()
-{
-    # TODO
-}
-
 internet_prt()
 {
     # TODO status may be active 
@@ -27,21 +17,6 @@ internet_prt()
     case $? in
         0) echo "<fc=#fffdd0>" ;;
         *) echo "<fc=#666666>" ;;
-    esac
-}
-
-touchpad_toggle()
-{
-    status=$(sysctl hw.psm.elantech.touchpad_off \
-           | awk -F" " '{printf $NF}')
-    
-    case ${status} in
-        0) sysctl hw.psm.elantech.touchpad_off=1
-           herbe "touchpad off"
-           ;;
-        *) sysctl hw.psm.elantech.touchpad_off=0
-           herbe "touchpad on"
-           ;;
     esac
 }
 
@@ -56,21 +31,6 @@ touchpad_prt()
     esac
 }
 
-github_msg()
-{
-    ssh -T git@github.com
-    case $? in
-          1) herbe "GitHub Connected"
-             ;;
-        255) herbe "GitHub Disconnected"       \
-                   " "                         \
-                   "Right click icon to open"  \
-                   "terminal and enter github" \
-                   "using ssh-add"
-             ;;
-    esac
-}
-
 github_prt()
 {
     ssh -T git@github.com
@@ -78,19 +38,6 @@ github_prt()
             1) fontcolor_prt 100 ;;
           255) fontcolor_prt   0 ;;
     esac
-}
-
-volume_msg()
-{
-    muteis=$(mixer -o vol.mute|cut -d= -f2)
-    volume=$(mixer -o vol.volume | cut -d: -f2)
-
-    if [ ${muteis} == "on" ]; then
-        herbe "volume : ${volume}% (muted)"
-        return
-    fi
-
-    herbe "volume : ${volume}%"
 }
 
 volume_prt()
@@ -111,42 +58,6 @@ volume_prt()
                 fontcolor_prt ${split}
                 ;;
     esac
-}
-
-volume_up()
-{
-    volume=$(mixer -o vol.volume | cut -d: -f2)
-    case ${volume} in
-        "1.00") break
-                ;;
-           *  ) mixer vol.volume=+3%
-                ;;
-    esac
-    volume_msg
-}
-
-volume_down()
-{
-    volume=$(mixer -o vol.volume | cut -d: -f2)
-    case ${volume} in
-        "0.00") break
-                ;;
-           *  ) mixer vol.volume=-3%
-                ;;
-    esac
-    volume_msg
-}
-
-volume_mute()
-{
-    mixer vol.mute=toggle
-    volume_msg
-}
-
-battery_msg()
-{
-    pct=$(apm -l)
-    herbe "battery life : ${pct}%"
 }
 
 battery_prt()
@@ -182,12 +93,6 @@ battery_prt()
     else
         fontcolor_prt ${pct}
     fi
-}
-
-backlight_msg()
-{
-    pct=$(backlight -q)
-    herbe "backlight level : ${pct}%"
 }
 
 backlight_prt()

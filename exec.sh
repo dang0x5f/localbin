@@ -10,10 +10,10 @@ if [ $# -ne 2 ]; then
 fi
 
 case ${1} in
-    "ui"  ) . uilib.sh   ;;
+    "prt" ) . prtlib.sh   ;;
     "app" ) echo "app"   ;;
     "env" ) echo "env"   ;;
-    "msg" ) echo "msg"   ;;
+    "msg" ) . msglib.sh   ;;
     "util") echo "util"  ;;
       *   ) usage        ;;
 esac

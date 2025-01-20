@@ -1,3 +1,35 @@
+localserver_msg()
+{
+    # TODO
+}
+
+localserver_prt()
+{
+    server="cassiopeia"
+    grepstr="1 packets transmitted, 1 packets received, 0.0% packet loss"
+    status=$(ping -c 1 ${server} | grep -i "${grepstr}" | wc -l)
+
+    case ${status} in
+        0) echo "<fc=#666666>" ;;
+        *) echo "<fc=#fffdd0>" ;;
+    esac
+}
+
+internet_msg()
+{
+    # TODO
+}
+
+internet_prt()
+{
+    # TODO status may be active 
+    ifconfig | grep "status: associated"
+    case $? in
+        0) echo "<fc=#fffdd0>" ;;
+        *) echo "<fc=#666666>" ;;
+    esac
+}
+
 touchpad_toggle()
 {
     status=$(sysctl hw.psm.elantech.touchpad_off \

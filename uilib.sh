@@ -120,7 +120,36 @@ battery_msg()
 battery_prt()
 {
     pct=$(apm -l)
-    fontcolor_prt ${pct}
+    if [ ${pct} -lt 50 ]; then
+        charging=$(apm | grep "AC" | awk '{print $NF}')
+        if [ ${charging} == "on-line" ]; then
+            if   [ ${pct} -lt 10 ]; then
+                echo "<fc=#00ff00,#666666> ${pct}% </fc> <fc=#666666>"
+            elif [ ${pct} -lt 20 ]; then
+                echo "<fc=#00ff00,#666666> ${pct}% </fc> <fc=#777777>"
+            elif [ ${pct} -lt 30 ]; then
+                echo "<fc=#00ff00,#666666> ${pct}% </fc> <fc=#888888>"
+            elif [ ${pct} -lt 40 ]; then
+                echo "<fc=#00ff00,#666666> ${pct}% </fc> <fc=#999999>"
+            else
+                echo "<fc=#00ff00,#666666> ${pct}% </fc> <fc=#aaaaaa>"
+            fi
+        else
+            if   [ ${pct} -lt 10 ]; then
+                echo "<fc=#e3735e,#666666> ${pct}% </fc> <fc=#666666>"
+            elif [ ${pct} -lt 20 ]; then
+                echo "<fc=#e3735e,#666666> ${pct}% </fc> <fc=#777777>"
+            elif [ ${pct} -lt 30 ]; then
+                echo "<fc=#f1fa8c,#666666> ${pct}% </fc> <fc=#888888>"
+            elif [ ${pct} -lt 40 ]; then
+                echo "<fc=#f1fa8c,#666666> ${pct}% </fc> <fc=#999999>"
+            else
+                echo "<fc=#f1fa8c,#666666> ${pct}% </fc> <fc=#aaaaaa>"
+            fi
+        fi
+    else
+        fontcolor_prt ${pct}
+    fi
 }
 
 backlight_msg()

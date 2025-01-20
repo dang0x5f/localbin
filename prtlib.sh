@@ -13,7 +13,7 @@ localserver_prt()
 internet_prt()
 {
     # TODO status may be active 
-    ifconfig | grep "status: associated"
+    ifconfig | grep "status: associated" 1> /dev/null
     case $? in
         0) echo "<fc=#fffdd0>" ;;
         *) echo "<fc=#666666>" ;;

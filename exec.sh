@@ -12,10 +12,10 @@ fi
 case ${1} in
     "app" ) echo "app"   ;;
     "env" ) echo "env"   ;;
-    "msg" ) . msglib.sh   ;;
-    "prt" ) . prtlib.sh   ;;
-    "util") echo "util"  ;;
-      *   ) usage        ;;
+    "msg" ) . libmsg.sh   ;;
+    "prt" ) . libprt.sh   ;;
+    "util") . libutil.sh  ;;
+      *   ) usage         ;;
 esac
 
 ${2}

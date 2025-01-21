@@ -66,36 +66,6 @@ volume_msg()
     herbe "volume : ${volume}%"
 }
 
-volume_up()
-{
-    volume=$(mixer -o vol.volume | cut -d: -f2)
-    case ${volume} in
-        "1.00") break
-                ;;
-           *  ) mixer vol.volume=+3%
-                ;;
-    esac
-    volume_msg
-}
-
-volume_down()
-{
-    volume=$(mixer -o vol.volume | cut -d: -f2)
-    case ${volume} in
-        "0.00") break
-                ;;
-           *  ) mixer vol.volume=-3%
-                ;;
-    esac
-    volume_msg
-}
-
-volume_mute()
-{
-    mixer vol.mute=toggle
-    volume_msg
-}
-
 battery_msg()
 {
     pct=$(apm -l)

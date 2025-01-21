@@ -26,7 +26,7 @@ mic_down()
 
 mic_mute()
 {
-    mixer vol.mute=toggle
+    mixer rec.mute=toggle
     mic_msg
 }
 

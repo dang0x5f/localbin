@@ -1,11 +1,13 @@
 localserver_msg()
 {
     # TODO
+    herbe "todo"
 }
 
 internet_msg()
 {
     # TODO
+    herbe "todo"
 }
 
 touchpad_toggle()
@@ -36,6 +38,19 @@ github_msg()
                    "using ssh-add"
              ;;
     esac
+}
+
+mic_msg()
+{
+    muteis=$(mixer -o rec.mute|cut -d= -f2)
+    microphone=$(mixer -o rec.volume|cut -d: -f2)
+
+    if [ ${muteis} == "on" ]; then
+        herbe "microphone : ${microphone}% (muted)"
+        return
+    fi
+
+    herbe "microphone : ${microphone}%"
 }
 
 volume_msg()

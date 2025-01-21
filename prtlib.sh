@@ -40,6 +40,26 @@ github_prt()
     esac
 }
 
+mic_prt()
+{
+    muteis=$(mixer -o rec.mute|cut -d= -f2)
+    if [ ${muteis} == "on" ]; then
+        fontcolor_prt 0
+        return
+    fi
+
+    microphone=$(mixer -o rec.volume|cut -d: -f2)
+    case ${microphone} in
+        "1.00") fontcolor_prt 100
+                ;;
+        "0.00") fontcolor_prt 0
+                ;;
+           *  ) split=$(echo ${microphone}|cut -c 3-4)
+                fontcolor_prt ${split}
+                ;;
+        esac
+}
+
 volume_prt()
 {
     muteis=$(mixer -o vol.mute|cut -d= -f2)
@@ -48,13 +68,13 @@ volume_prt()
         return
     fi
 
-    volume=$(mixer -o vol.volume | cut -d: -f2)
+    volume=$(mixer -o vol.volume|cut -d: -f2)
     case ${volume} in
         "1.00") fontcolor_prt 100 
                 ;;
         "0.00") fontcolor_prt 0      
                 ;;
-           *  ) split=$(echo ${volume} | cut -c 3-4) 
+           *  ) split=$(echo ${volume}|cut -c 3-4) 
                 fontcolor_prt ${split}
                 ;;
     esac

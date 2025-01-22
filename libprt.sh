@@ -1,6 +1,6 @@
 printer_prt()
 {
-    status=$(service lpd onestatus)
+    status="$(service lpd onestatus)"
     error_msg="lpd is not running."
 
     if [ "${status}" = "${error_msg}" ]; then

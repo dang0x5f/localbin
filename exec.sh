@@ -24,6 +24,4 @@ case $# in
     * ) usage      ;;
 esac
 
-${2}
-
 exit 0

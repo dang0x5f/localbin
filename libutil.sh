@@ -1,33 +1,40 @@
-. libmsg.sh
+wincopy()
+{
+    # imagemagick
+    path="~/Downloads/"
+    date=$(date "+%m%d%y%H%M%S")
+    winid="-w $(xwininfo|grep "Window id"|awk '{print $4}')"
+    import ${winid} ${path}${date}_cap.png
+}
 
 mic_up()
 {
-    microphone=$(mixer -o mic.volume | cut -d: -f2)
+    microphone=$(mixer -o rec.volume | cut -d: -f2)
     case ${microphone} in
         "1.00") break
                 ;;
            *  ) mixer rec.volume=+3%
                 ;;
     esac
-    mic_msg
+    . libmsg.sh && mic_msg
 }
 
 mic_down()
 {
-    microphone=$(mixer -o mic.volume | cut -d: -f2)
+    microphone=$(mixer -o rec.volume | cut -d: -f2)
     case ${microphone} in
         "0.00") break
                 ;;
            *  ) mixer rec.volume=-3%
                 ;;
     esac
-    mic_msg
+    . libmsg.sh && mic_msg
 }
 
 mic_mute()
 {
     mixer rec.mute=toggle
-    mic_msg
+    . libmsg.sh && mic_msg
 }
 
 volume_up()
@@ -39,7 +46,7 @@ volume_up()
            *  ) mixer vol.volume=+3%
                 ;;
     esac
-    volume_msg
+    . libmsg.sh && volume_msg
 }
 
 volume_down()
@@ -51,11 +58,11 @@ volume_down()
            *  ) mixer vol.volume=-3%
                 ;;
     esac
-    volume_msg
+    . libmsg.sh && volume_msg
 }
 
 volume_mute()
 {
     mixer vol.mute=toggle
-    volume_msg
+    . libmsg.sh && volume_msg
 }

@@ -1,3 +1,30 @@
+rm_spaces()
+{
+    #TODO globbing does not work due to parameter restrictions
+    count=0
+
+    if [ $# -eq 0 ]; then
+        echo "error: 0 parameter"
+        exit 1
+    fi
+
+    while [ $# -gt 0 ]; do
+        if [ -f "${1}" ]; then
+            nospace="$(echo "${1}"|sed 's/ /_/g')"
+            mv "${1}" ${nospace}
+            echo "> (+) Renamed ${1} -> ${nospace}"
+        else
+            echo "> (*) Not a file: ${1}"
+            count=$(( $count + 1 ))
+        fi
+        shift
+    done
+
+    echo "Total non files parsed: ${count}"
+
+    exit 0
+}
+
 makegif()
 {
     # new solution
@@ -20,7 +47,8 @@ wow()
            *   ) exit 1                   ;;
     esac
 
-    wine Wow.exe 2> /dev/null & && echo "starting..."
+    wine Wow.exe 2> /dev/null & 
+
     exit 0
 }
 

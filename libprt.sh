@@ -1,3 +1,15 @@
+printer_prt()
+{
+    status=$(service lpd onestatus)
+    error_msg="lpd is not running."
+
+    if [ "${status}" = "${error_msg}" ]; then
+        echo "<fc=#666666>"
+    else
+        echo "<fc=#fffdd0>"
+    fi
+}
+
 localserver_prt()
 {
     server="cassiopeia"

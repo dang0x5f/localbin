@@ -1,3 +1,20 @@
+printer_msg()
+{
+    # TODO split to separate application
+    status=$(service lpd onestatus)
+    error_msg="lpd is not running."
+
+    if [ "${status}" = "${error_msg}" ]; then
+        herbe "lpd is down."                \
+              " "                           \
+              "onestart lpd using service cmd"
+    else
+        herbe "lpd printer list."           \
+              " "                           \
+              "`lpc status all | grep -i : | sed 's/://g'`"
+    fi
+}
+
 localserver_msg()
 {
     # TODO

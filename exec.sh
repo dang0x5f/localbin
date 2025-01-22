@@ -1,12 +1,12 @@
 #!/bin/sh
 
 usage(){
-    echo "usage: ${0} lib proc"
+    echo "usage: ${0} lib proc [param ...]"
 }
 
-if [ $# -ne 2 ]; then
+if [ $# -lt 2 ]; then
     usage 
-    exit
+    exit 1
 fi
 
 case ${1} in
@@ -18,4 +18,12 @@ case ${1} in
       *   ) usage         ;;
 esac
 
+case $# in
+    2 ) ${2}       ;;
+    3 ) ${2} ${3}  ;;
+    * ) usage      ;;
+esac
+
 ${2}
+
+exit 0

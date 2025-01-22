@@ -1,3 +1,19 @@
+ssr_prt()
+{
+    file="/tmp/ssr-stats"
+    if [ ! -f ${file} ]; then
+        echo "<fc=#666666>"
+        exit 0
+    fi
+    
+    rec=$(grep recording ${file} | awk '{print $2}')
+    case ${rec} in
+        1) echo "<fc=#fffdd0>" ;;
+        *) echo "<fc=#666666>" ;;
+    esac
+    exit 0
+}
+
 printer_prt()
 {
     status="$(service lpd onestatus)"

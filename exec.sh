@@ -10,7 +10,6 @@ if [ $# -lt 2 ]; then
 fi
 
 case ${1} in
-    "app" ) echo "app"   ;;
     "env" ) echo "env"   ;;
     "msg" ) . libmsg.sh   ;;
     "prt" ) . libprt.sh   ;;
@@ -19,9 +18,10 @@ case ${1} in
 esac
 
 case $# in
-    2 ) ${2}       ;;
-    3 ) ${2} ${3}  ;;
-    * ) usage      ;;
+    2 ) ${2}           ;;
+    3 ) ${2} ${3}      ;;
+    4 ) ${2} ${3} ${4} ;;
+    * ) usage          ;;
 esac
 
 exit 0

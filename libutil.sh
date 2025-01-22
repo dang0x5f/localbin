@@ -1,3 +1,29 @@
+makegif()
+{
+    # new solution
+    # https://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality
+    # smol
+    # ffmpeg -i $1 -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 $2
+    # largo
+    ffmpeg -i ${1} -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 ${2}
+}
+
+wow()
+{
+    winepath=${HOME}"/.wine/WoW-MOP/drive_c/Program Files/"
+    mop='MOP-5.4.8.18414/'
+    wotlk='WorldOfWarcraft3.3.5a/'
+
+    case ${1} in
+        "mop"  ) cd "${winepath}${mop}"   ;;
+        "wotlk") cd "${winepath}${wotlk}" ;;
+           *   ) exit 1                   ;;
+    esac
+
+    wine Wow.exe 2> /dev/null & && echo "starting..."
+    exit 0
+}
+
 wincopy()
 {
     # imagemagick

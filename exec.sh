@@ -10,7 +10,6 @@ if [ $# -lt 2 ]; then
 fi
 
 case ${1} in
-    "env" ) echo "env"   ;;
     "msg" ) . libmsg.sh   ;;
     "prt" ) . libprt.sh   ;;
     "util") . libutil.sh  ;;

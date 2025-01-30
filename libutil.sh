@@ -1,7 +1,9 @@
 rm_spaces()
 {
-    #TODO globbing does not work due to parameter restrictions
     count=0
+
+    shift
+    shift
 
     if [ $# -eq 0 ]; then
         echo "error: 0 parameter"

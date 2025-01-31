@@ -1,0 +1,9 @@
+*/home/dang/src/dotfiles/
+vimrc,/.vimrc,null
+config.hs,/config.hs,/.xmonad
+ctags,/.ctags,null
+gitconfig,/.gitconfig,null
+xmobarrc,/.xmobarrc,null
+shrc,/.shrc,null
+xinitrc,/.xinitrc,null
+xresources,/.Xresources,null

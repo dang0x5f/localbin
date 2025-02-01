@@ -7,3 +7,4 @@ xmobarrc,/.xmobarrc,null
 shrc,/.shrc,null
 xinitrc,/.xinitrc,null
 xresources,/.Xresources,null
+ps2pcl.sh,/ps2pcl,/usr/local/libexec

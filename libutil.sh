@@ -1,3 +1,16 @@
+picom_toggle()
+{
+    file="/tmp/picom.tmp"
+    if [ ! -f ${file} ]; then
+        touch ${file}
+        picom
+    else
+        rm ${file}
+        pkill picom
+    fi
+    exit 0
+}
+
 iphone_heic()
 {
     DIR="/mnt/iPhone_Images/*"

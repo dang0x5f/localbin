@@ -1,3 +1,14 @@
+picom_prt()
+{
+    file="/tmp/picom.tmp"
+    if [ -f ${file} ]; then
+        echo "<fc=#fffdd0>"
+    else
+        echo "<fc=#666666>"
+    fi
+    exit 0
+}
+
 ssr_prt()
 {
     file="/tmp/ssr-stats"

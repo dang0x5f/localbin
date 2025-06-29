@@ -145,10 +145,10 @@ wow()
 wincopy()
 {
     # imagemagick
-    path="~/Downloads/"
-    date=$(date "+%m%d%y%H%M%S")
+    path="${HOME}/Downloads/"
+    date=$(date "+%m%d%y-%H%M%S")
     winid="-w $(xwininfo|grep "Window id"|awk '{print $4}')"
-    import ${winid} ${path}${date}_cap.png
+    import ${winid} ${path}util_wincopy_${date}.png
 }
 
 mic_up()

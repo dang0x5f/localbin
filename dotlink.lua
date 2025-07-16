@@ -76,7 +76,7 @@ function mk_preview()
             else
                 buildpaths(line)
                 
-                print(tag_mkprev..dst_path.." -> "..dot_path)
+                print(tag_mkprev..link_path.." -> "..dot_path)
             end
 
             ::continue::
@@ -111,7 +111,7 @@ function rm_preview()
             else
                 buildpaths(line)
                 
-                print(tag_rmprev..dst_path)
+                print(tag_rmprev..link_path)
             end
 
             ::continue::
@@ -135,31 +135,31 @@ end
 function mk_link(line)
     buildpaths(line)
 
-    status, errno = dotlink.mk_link(dot_path,dst_path)
+    status, errno = dotlink.mk_link(dot_path,link_path)
     if status == -1 then
-        print(tag_err..dst_path.." : "..errno)
+        print(tag_err..link_path.." : "..errno)
     else
-        print(tag_ok..dst_path.." -> "..dot_path)
+        print(tag_ok..link_path.." -> "..dot_path)
     end
 end
 
 function rm_link(line)
     buildpaths(line)
 
-    status, errno = dotlink.rm_link(dst_path)
+    status, errno = dotlink.rm_link(link_path)
     if status == -1 then
-        print(tag_err..dst_path.." : "..errno)
+        print(tag_err..link_path.." : "..errno)
     else
-        print(tag_ok..dst_path)
+        print(tag_ok..link_path)
     end
 end
 
 function buildpaths(line)
     src, dst, ext = dotlink.split_comma(line,line:len())
     if ext == "null" then
-        dst_path = home_path .. dst
+        link_path = home_path .. dst
     else
-        dst_path = home_path .. ext .. dst
+        link_path = home_path .. ext .. dst
     end
     dot_path = src_path .. src
 end
